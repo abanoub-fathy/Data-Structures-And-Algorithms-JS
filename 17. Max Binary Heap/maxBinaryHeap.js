@@ -63,6 +63,9 @@ class maxBinaryHeap {
 
   // extractMax method to remove the root of the heap
   extractMax() {
+    // if there is no items to extract
+    if (!this.values.length) return undefined;
+
     // swap both the root and the last value in the heap
     this.swap(0, this.values.length - 1);
 
