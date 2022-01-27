@@ -116,6 +116,38 @@ class Graph {
 
     return visited;
   }
+
+  // Recursive BFS
+  BFS(start) {
+    // check for invalid start
+    if (!this.adjacencyList[start]) return [];
+
+    let currentVertex = null;
+    let q = [start];
+    let discovered = {};
+    let visited = [];
+
+    // as the queue is not empty
+    while (q.length) {
+      // extract from the queue
+      currentVertex = q.shift();
+      // push to the visited array
+      visited.push(currentVertex);
+      // mark this vertex as discovered
+      discovered[currentVertex] = true;
+
+      // add the vertex neighbours to the queue
+      for (let neighbour in this.adjacencyList[currentVertex]) {
+        if (!discovered[neighbour]) {
+          q.push(neighbour);
+          discovered[neighbour] = true;
+        }
+      }
+    }
+
+    // return visited array
+    return visited;
+  }
 }
 
 let g = new Graph();
@@ -134,7 +166,8 @@ g.addEdge("D", "E");
 g.addEdge("D", "F");
 g.addEdge("E", "F");
 
-g.recursiveDFS("A");
+g.BFS("C");
+// A - B - C - D - E - F
 
 //          A
 //        /   \
