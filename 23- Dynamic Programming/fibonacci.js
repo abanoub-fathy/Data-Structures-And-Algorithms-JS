@@ -20,3 +20,20 @@ const fibWithMemo = (n, memo = { 1: 1, 2: 1 }) => {
 };
 
 fibWithMemo(10); // Big O ==> O(N)
+
+//////////////////////// Applying Tabulation \\\\\\\\\\\\\\\\\\\\\\\\\\\\
+const fibWithTabulation = (n) => {
+  if (n <= 2) return 1;
+
+  // define a table
+  const table = { 1: 1, 2: 1 };
+
+  // loop up to n
+  for (let i = 3; i <= n; i++) {
+    table[i] = table[i - 1] + table[i - 2];
+  }
+
+  return table[n];
+};
+
+fibWithTabulation(10); // Big O ==> O(N) -- with better space complexity
